@@ -2,3 +2,14 @@ node_modules/
 .env
 .env.local
 dist/
+# Local AI/editor tooling
+.agents/
+.claude/
+.windsurf/
+skills-lock.json
+
+# Backend local tooling
+backend/.agents/
+backend/.claude/
+backend/.windsurf/
+backend/skills-lock.json
