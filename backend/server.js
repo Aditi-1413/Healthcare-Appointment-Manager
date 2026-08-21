@@ -2,9 +2,16 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
+const authRoutes = require("./src/routes/authRoutes");
+
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
@@ -12,6 +19,8 @@ app.get("/", (req, res) => {
     message: "Healthcare Appointment Manager API is running",
   });
 });
+
+app.use("/api/auth", authRoutes);
 
 const PORT = process.env.PORT || 5000;
 
