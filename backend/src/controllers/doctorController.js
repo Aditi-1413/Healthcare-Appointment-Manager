@@ -113,7 +113,52 @@ const createDoctor = async (req, res) => {
     });
   }
 };
+const getDoctors = async (req, res) => {
+  try {
+    const { specialization } = req.query;
+
+    const where = specialization
+      ? {
+          specialization: {
+            contains: specialization,
+            mode: "insensitive",
+          },
+        }
+      : {};
+
+    const doctors = await prisma.doctor.findMany({
+      where,
+      include: {
+        user: {
+          select: {
+            id: true,
+            firstName: true,
+            lastName: true,
+            email: true,
+            phone: true,
+          },
+        },
+        workingHours: true,
+        leaves: true,
+      },
+      orderBy: {
+        id: "asc",
+      },
+    });
+
+    return res.status(200).json({
+      doctors,
+    });
+  } catch (error) {
+    console.error("Get doctors error:", error);
+
+    return res.status(500).json({
+      message: "Unable to fetch doctors",
+    });
+  }
+};
 
 module.exports = {
   createDoctor,
+  getDoctors,
 };

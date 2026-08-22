@@ -2,6 +2,7 @@ const express = require("express");
 
 const {
   createDoctor,
+  getDoctors, 
 } = require("../controllers/doctorController");
 
 const {
@@ -10,6 +11,7 @@ const {
 } = require("../middleware/authMiddleware");
 
 const router = express.Router();
+router.get("/",getDoctors);
 
 router.post(
   "/",
