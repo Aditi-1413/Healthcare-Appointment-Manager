@@ -3,6 +3,7 @@ const express = require("express");
 const {
   createDoctor,
   getDoctors, 
+  getAvailableSlots,
 } = require("../controllers/doctorController");
 
 const {
@@ -12,6 +13,8 @@ const {
 
 const router = express.Router();
 router.get("/",getDoctors);
+router.get("/:doctorId/slots", getAvailableSlots);
+
 
 router.post(
   "/",
