@@ -1,10 +1,15 @@
 const express = require("express");
 
 const {
+  getMyAppointments,
+  getDoctorAppointments,
   holdAppointment,
   confirmAppointment,
-  getMyAppointments,
   cancelAppointment,
+  createConsultation,
+  createPostVisitSummary,
+  createPrescription,
+  createMedicationReminder,
 } = require("../controllers/appointmentController");
 
 const {
@@ -12,33 +17,75 @@ const {
 } = require("../middleware/authMiddleware");
 
 const router = express.Router();
-
-// Hold a slot
+const {
+  createSymptomReport,
+} = require("../controllers/appointmentController");
+// Patient: view own appointments
 router.post(
-  "/hold",
+  "/:id/symptoms",
   authenticate,
-  holdAppointment
+  createSymptomReport
 );
-
-// Confirm a held appointment
-router.post(
-  "/:appointmentId/confirm",
-  authenticate,
-  confirmAppointment
-);
-
-// Get logged-in patient's appointments
 router.get(
   "/my",
   authenticate,
   getMyAppointments
 );
 
-// Cancel appointment
+// Doctor: view own appointments
+router.get(
+  "/doctor",
+  authenticate,
+  getDoctorAppointments
+);
+
+// Patient: hold appointment
 router.post(
-  "/:appointmentId/cancel",
+  "/hold",
+  authenticate,
+  holdAppointment
+);
+
+// Patient: confirm appointment
+router.post(
+  "/:id/confirm",
+  authenticate,
+  confirmAppointment
+);
+
+// Patient: cancel appointment
+router.post(
+  "/:id/cancel",
   authenticate,
   cancelAppointment
+);
+
+// Doctor: create consultation
+router.post(
+  "/:id/consultation",
+  authenticate,
+  createConsultation
+);
+
+// Doctor: create post-visit summary
+router.post(
+  "/:id/post-visit-summary",
+  authenticate,
+  createPostVisitSummary
+);
+
+// Doctor: create prescription
+router.post(
+  "/:id/prescription",
+  authenticate,
+  createPrescription
+);
+
+// Patient: create medication reminder
+router.post(
+  "/prescriptions/:prescriptionId/reminder",
+  authenticate,
+  createMedicationReminder
 );
 
 module.exports = router;
