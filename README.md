@@ -1,91 +1,102 @@
-# Healthcare Appointment Manager
+# 🏥 MedTime Plus — AI-Powered Healthcare Appointment Platform
 
-A full-stack healthcare appointment management platform designed for clinics, patients, doctors, and administrators.
+MedTime Plus is a full-stack healthcare appointment management platform designed to simplify and automate the complete patient–doctor appointment workflow.
 
-The platform goes beyond basic appointment booking by allowing patients to submit symptoms before their appointment, generating AI-powered pre-visit summaries for doctors, creating patient-friendly post-visit summaries, managing prescriptions and medication reminders, and keeping patients and doctors synchronized through email notifications and Google Calendar.
+The platform provides **separate portals for Patients, Doctors, and Admins**, allowing each role to manage the information and tasks relevant to them.
 
----
+## ✨ Key Features
 
-## Table of Contents
+- 👤 **Patient Portal**
+  - Patient registration and secure login
+  - Search doctors by specialization
+  - View available appointment slots
+  - Book, confirm, and cancel appointments
+  - Submit symptoms before the appointment
+  - View medical history, consultations, prescriptions, and follow-ups
+  - Set medication reminders
 
-- [Project Overview](#project-overview)
-- [Objectives](#objectives)
-- [Features](#features)
-- [User Roles](#user-roles)
-- [System Workflow](#system-workflow)
-- [Technology Stack](#technology-stack)
-- [Project Structure](#project-structure)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
-- [Environment Variables](#environment-variables)
-- [Database Setup](#database-setup)
-- [Running the Application](#running-the-application)
-- [API Documentation](#api-documentation)
-- [Authentication](#authentication)
-- [Appointment Management](#appointment-management)
-- [Doctor Management](#doctor-management)
-- [Leave Management](#leave-management)
-- [Patient Medical Records](#patient-medical-records)
-- [AI / LLM Integration](#ai--llm-integration)
-- [Consultation and Post-Visit Summary](#consultation-and-post-visit-summary)
-- [Prescription Management](#prescription-management)
-- [Medication Reminders](#medication-reminders)
-- [Email Notifications](#email-notifications)
-- [Google Calendar Integration](#google-calendar-integration)
-- [Background Jobs](#background-jobs)
-- [Double-Booking Prevention](#double-booking-prevention)
-- [Slot Hold Mechanism](#slot-hold-mechanism)
-- [Doctor Leave Conflict Handling](#doctor-leave-conflict-handling)
-- [Notification Failure Handling](#notification-failure-handling)
-- [LLM Failure Handling](#llm-failure-handling)
-- [Database Schema](#database-schema)
-- [Security](#security)
-- [Frontend](#frontend)
-- [Backend](#backend)
-- [Deployment](#deployment)
-- [Testing](#testing)
-- [System Design](#system-design)
-- [Future Improvements](#future-improvements)
-- [Evaluation Requirements](#evaluation-requirements)
-- [License](#license)
+- 👨‍⚕️ **Doctor Portal**
+  - View upcoming appointments
+  - Access patient symptom information
+  - Receive an **AI-generated pre-visit symptom summary**
+  - Record clinical notes after consultation
+  - Generate patient-friendly post-visit summaries using AI
+  - Create prescriptions and medication schedules
 
----
+- 🛠️ **Admin Portal**
+  - Create and manage doctor profiles
+  - Manage doctor specializations
+  - Configure working hours and appointment slot duration
+  - Manage doctor leave days
+  - Handle appointment and scheduling operations
 
-# Project Overview
+## 🤖 AI-Powered Healthcare
 
-Healthcare Appointment Manager is a web-based healthcare platform that provides separate portals for:
+LLM integration is used to transform patient-provided symptoms into a concise **pre-visit summary** containing:
 
-- Patients
-- Doctors
-- Administrators
+- Urgency level: Low / Medium / High
+- Chief complaint
+- Three suggested questions for the doctor
 
-The system manages the complete appointment lifecycle:
+After consultation, clinical notes are converted into a **patient-friendly post-visit summary** containing medication schedules and follow-up instructions.
 
-```text
-Patient Registration
-        ↓
-Doctor Search
-        ↓
-Slot Selection
-        ↓
-Slot Hold
-        ↓
-Symptom Submission
-        ↓
-AI Pre-Visit Summary
-        ↓
-Appointment Confirmation
-        ↓
-Email + Google Calendar
-        ↓
-Doctor Consultation
-        ↓
-Clinical Notes
-        ↓
-Prescription
-        ↓
-AI Post-Visit Summary
-        ↓
-Medication Reminders
-        ↓
-Follow-Up
+LLM failures are handled gracefully so that AI issues do not interrupt the appointment workflow.
+
+## 🔐 Reliable Appointment Management
+
+The system is designed to prevent double-booking during simultaneous booking attempts using database-level constraints and controlled slot handling.
+
+Appointments follow a lifecycle such as:
+
+`Available → Held → Confirmed → Completed / Cancelled`
+
+Doctor leave management also handles existing appointments so affected patients can be notified appropriately.
+
+## 📧 Notifications & Reminders
+
+The platform supports automated notifications for:
+
+- Appointment confirmations
+- Appointment cancellations
+- Medication reminders
+- Doctor leave/appointment changes
+
+Background jobs process scheduled medication reminders and support reliable notification delivery.
+
+## 📅 Google Calendar Integration
+
+Confirmed appointments can be synchronized with **Google Calendar**, keeping patients and doctors informed about their schedules.
+
+Calendar events are designed to support appointment lifecycle changes such as cancellation and rescheduling.
+
+## 🛠️ Technology Stack
+
+**Frontend**
+- React
+- Vite
+- JavaScript
+- CSS
+
+**Backend**
+- Node.js
+- Express.js
+- REST APIs
+- JWT Authentication
+
+**Database**
+- PostgreSQL
+- Prisma ORM
+
+**AI**
+- LLM integration for symptom analysis and post-visit summaries
+
+**Integrations**
+- Google Calendar API
+- Email notification service
+- Background scheduled jobs
+
+## 🎯 Project Objective
+
+MedTime Plus goes beyond a basic appointment booking system by connecting **appointment scheduling, symptom analysis, clinical documentation, prescriptions, AI-generated summaries, notifications, medication reminders, and calendar synchronization** into one healthcare workflow.
+
+The goal is to reduce administrative effort for clinics while giving patients and doctors a more organized and informed appointment experience.
