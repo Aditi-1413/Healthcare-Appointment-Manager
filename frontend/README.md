@@ -1,16 +1,68 @@
-# React + Vite
+# MedTime Plus — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite client for **MedTime Plus**, an AI-powered healthcare appointment platform. See the [project README](../README.md) for the full feature list, architecture, and API documentation.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React 18
+- Vite
+- React Router
+- JavaScript / CSS
 
-## React Compiler
+## Getting Started
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Prerequisites
 
-## Expanding the ESLint configuration
+- Node.js 18+
+- The backend API running (see the [server README](../server/README.md) or root [README](../README.md))
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Install
+
+```bash
+npm install
+```
+
+### Configure environment variables
+
+Create a `.env` file in this directory:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+```
+
+### Run the dev server
+
+```bash
+npm run dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### Build for production
+
+```bash
+npm run build       # outputs to dist/
+npm run preview     # preview the production build locally
+```
+
+## Project Structure
+
+```
+src/
+├── components/     Shared UI components
+├── pages/          Route pages, organized by role: patient/, doctor/, admin/
+├── context/        AuthContext (JWT session)
+├── services/       API request wrappers
+├── App.jsx         Root component and route definitions
+└── main.jsx        Entry point
+```
+
+## Linting
+
+This project uses ESLint. Run:
+
+```bash
+npm run lint
+```
+
+For type-aware lint rules in a production setting, consider migrating to the [TypeScript template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) and adding [`typescript-eslint`](https://typescript-eslint.io).
